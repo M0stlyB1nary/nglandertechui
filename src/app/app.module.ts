@@ -11,7 +11,8 @@ import { MessageService } from './message.service';
 import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { HomeComponent } from './home/home.component'; // <-- NgModel lives here
+import { HomeComponent } from './home/home.component';
+import { ProductsComponent } from './products/products.component'; // <-- NgModel lives here
 
 
 
@@ -22,7 +23,8 @@ import { HomeComponent } from './home/home.component'; // <-- NgModel lives here
     HeroDetailComponent,
     MessagesComponent,
     DashboardComponent,
-    HomeComponent
+    HomeComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
