@@ -2,17 +2,51 @@
 
   <h2>{{ product.description | uppercase }} Details</h2>
   <div>
-    <span>id: </span>{{product.id}}</div>
+    <span>Product Id: </span>{{product.productId}}</div>
   <div>
-    <label>description:
+    <label>Description:
       <input [(ngModel)]="product.description" placeholder="description" />
     </label>
   </div>
   <div>
-    <label>type:
-      <input [(ngModel)]="product.type" placeholder="type" />
+    <label>Category:
+      <input [(ngModel)]="product.category" placeholder="category" />
+    </label>
+  </div>
+  <div>
+    <label>Name:
+      <input [(ngModel)]="product.productName" placeholder="name" />
+    </label>
+  </div>
+  <div>
+    <label>Code:
+      <input [(ngModel)]="product.productCode" placeholder="code" />
+    </label>
+  </div>
+  <div>
+    <label>Cost:
+      <input [(ngModel)]="product.cost" placeholder="cost" />
+    </label>
+  </div>
+
+  <div>
+    <label>Price:
+      <input [(ngModel)]="product.price" placeholder="price" />
+    </label>
+  </div>
+
+  <div>
+    <label>Relase Date:
+      <input [(ngModel)]="product.releaseDate" placeholder="releaseDate" />
+    </label>
+  </div>
+
+  <div>
+    <label>Status:
+      <input [(ngModel)]="product.status" placeholder="status" />
     </label>
   </div>
 
 </div>
 <button (click)="goBack()">go back</button>
+<button (click)="save()">save</button>

@@ -1,8 +1,20 @@
 <h2>My products</h2>
+
+<div>
+  <label>Product name:
+    <input #productName />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(productName.value); productName.value=''">
+    add
+  </button>
+</div>
+
 <ul class="products">
   <li *ngFor="let product of products">
     <a routerLink="/productDetail/{{product.id}}">
-      <span class="badge">{{product.id}}</span> {{product.description}}
+      <span class="badge">{{product.productId}}</span> {{product.productName}}
     </a>
+    <button class="delete" title="delete product" (click)="delete(product)">x</button>
   </li>
 </ul>

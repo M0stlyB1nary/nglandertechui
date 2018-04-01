@@ -1,5 +1,12 @@
 export class Product {
-  id: number;
+  id: string;
+  productId: number;
   description: string;
-  type: string;
+  category: string;
+  productName: string;
+  productCode: string;
+  releaseDate: string;
+  cost: number;
+  price: number;
+  status: string;
 }
