@@ -15,6 +15,7 @@ const httpOptions = {
 export class ProductService {
 
   private productsUrl = 'http://localhost:8080/api/v1/products';
+  private productSearchDescUrl = 'http://localhost:8080/api/v1/products/desc';
 
   constructor(private http: HttpClient,
     private messageService: MessageService) { }
@@ -24,6 +25,11 @@ export class ProductService {
     return of(PRODUCTS);
   }
 
+  getMockProduct(id: string): Observable<Product> {
+    this.messageService.add(`ProductService: fetched product productId=${id}`);
+    return of(PRODUCTS.find(product => product.id === id));
+  }
+
   getProducts(): Observable<Product[]> {
     this.messageService.add('Product service: fetched products');
     return this.http.get<Product[]>(this.productsUrl)
@@ -31,11 +37,6 @@ export class ProductService {
         tap(products => this.log(`fetched products`)),
         catchError(this.handleError('getProducts', []))
       );
-  }
-
-  getMockProduct(id: string): Observable<Product> {
-    this.messageService.add(`ProductService: fetched product productId=${id}`);
-    return of(PRODUCTS.find(product => product.id === id));
   }
 
   /** GET product by id. Will 404 if id not found */
@@ -72,7 +73,7 @@ export class ProductService {
     );
   }
 
-  /** DELETE: delete the hero from the server */
+  /** DELETE: delete the product from the server */
   deleteProduct(product: Product | string): Observable<Product> {
     const id = typeof product === 'string' ? product : product.id;
     const url = `${this.productsUrl}/${id}`;
@@ -80,6 +81,19 @@ export class ProductService {
     return this.http.delete<Product>(url, httpOptions).pipe(
       tap(_ => this.log(`deleted product id=${id}`)),
       catchError(this.handleError<Product>('deleteProduct'))
+    );
+  }
+
+  /* GET products whose name contains search term */
+  searchProducts(term: string): Observable<Product[]> {
+    const url = `${this.productSearchDescUrl}?desc=${term}`;
+    if (!term.trim()) {
+      // if not search term, return empty product array.
+      return of([]);
+    }
+    return this.http.get<Product[]>(url).pipe(
+      tap(_ => this.log(`found products matching "${term}"`)),
+      catchError(this.handleError<Product[]>('searchProducts', []))
     );
   }
 
