@@ -16,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component'; // <-- NgModel lives here
 import { ProductService } from './services/product.service';
+import { ProductSearchComponent } from './product-search/product-search.component';
 
 
 
@@ -28,7 +29,8 @@ import { ProductService } from './services/product.service';
     DashboardComponent,
     HomeComponent,
     ProductsComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    ProductSearchComponent
   ],
   imports: [
     BrowserModule,

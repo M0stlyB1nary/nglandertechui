@@ -24,13 +24,11 @@ export class ProductDetailComponent implements OnInit {
 
   getProduct(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    console.log('checkpoint: ' + id);
     this.productService.getProduct(id)
       .subscribe(product => this.product = product);
   }
   getProductPid(): void {
     const productId = +this.route.snapshot.paramMap.get('productId');
-    // console.log('checkpoint: ' + productId);
     this.productService.getProductByPid(productId)
       .subscribe(product => this.product = product);
   }
