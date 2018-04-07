@@ -6,6 +6,7 @@ import { PRODUCTS } from '../mocks/mock-products';
 import { MessageService } from '../message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,8 +15,8 @@ const httpOptions = {
 @Injectable()
 export class ProductService {
 
-  private productsUrl = 'http://localhost:8080/api/v1/products';
-  private productSearchDescUrl = 'http://localhost:8080/api/v1/products/desc';
+  private productsUrl = environment.serverUrl + '/api/v1/products';
+  private productSearchDescUrl = environment.serverUrl + '/api/v1/products/desc';
 
   constructor(private http: HttpClient,
     private messageService: MessageService) { }

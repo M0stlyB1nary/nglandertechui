@@ -6,11 +6,12 @@ import { of } from 'rxjs/observable/of';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { environment } from '../environments/environment';
 
 @Injectable()
 export class HeroService {
 
-  private heroesUrl = 'http://localhost:8080/hero/';  // URL to web api
+  private heroesUrl = environment.serverUrl + '/hero/';
 
   constructor(private http: HttpClient,
     private messageService: MessageService) { }
@@ -19,8 +20,8 @@ export class HeroService {
   getHeroes(): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.heroesUrl)
       .pipe(
-      tap(heroes => this.log(`fetched heroes`)),
-      catchError(this.handleError('getHeroes', []))
+        tap(heroes => this.log(`fetched heroes`)),
+        catchError(this.handleError('getHeroes', []))
       );
   }
 
